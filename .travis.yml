@@ -9,17 +9,17 @@ env:
   - CUDA=false
 
 before_install:
-    - |
-        if [ ${CUDA} ]; then
-            travis_retry wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1204/x86_64/cuda-repo-ubuntu1204_${CUDA}-14_amd64.deb
-            travis_retry sudo dpkg -i cuda-repo-ubuntu1204_${CUDA}-14_amd64.deb
-            travis_retry sudo apt-get install -y cuda-${CUDA}
-            travis_retry sudo apt-get install -y cuda-drivers cuda-core-${CUDA} cuda-cudart-dev-${CUDA}
-            travis_retry sudo apt-get clean
-            export CUDA_HOME=/usr/local/cuda-${CUDA}
-            export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
-            export PATH=${CUDA_HOME}/bin:${PATH}
-        fi
+  - if [ ${CUDA} ]; then
+    travis_retry wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1204/x86_64/cuda-repo-ubuntu1204_${CUDA}-14_amd64.deb
+    travis_retry sudo dpkg -i cuda-repo-ubuntu1204_${CUDA}-14_amd64.deb
+    travis_retry sudo apt-get install -y cuda-${CUDA}
+    travis_retry sudo apt-get install -y cuda-drivers cuda-core-${CUDA} cuda-cudart-dev-${CUDA}
+    travis_retry sudo apt-get clean
+    export CUDA_HOME=/usr/local/cuda-${CUDA}
+    export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
+    export PATH=${CUDA_HOME}/bin:${PATH}
+    Nvcc --version
+    fi
 
 install:
   - python setup.py install

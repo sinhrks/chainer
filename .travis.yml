@@ -22,7 +22,7 @@ before_install:
 install:
   - python setup.py install
   - pip install nose flake8 hacking
-  - pip install chainer-cuda-requirements
+  - pip install pycuda scikits.cuda Mako six
 
 script:
   - nosetests

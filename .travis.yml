@@ -10,6 +10,7 @@ env:
 before_install:
   - travis_retry wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1204/x86_64/cuda-repo-ubuntu1204_${CUDA}-14_amd64.deb
   - travis_retry sudo dpkg -i cuda-repo-ubuntu1204_${CUDA}-14_amd64.deb
+  - travis_retry sudo apt-get update -qq
   - travis_retry sudo apt-get install -y cuda-${CUDA/./-}
   - travis_retry sudo apt-get install -y cuda-drivers cuda-core-${CUDA/./-} cuda-cudart-dev-${CUDA/./-}
   - travis_retry sudo apt-get clean

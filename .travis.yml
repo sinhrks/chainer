@@ -19,7 +19,6 @@ before_install:
   - export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
   - export PATH=${CUDA_HOME}/bin:${PATH}
   - nvcc --version
-  - travis_retry sudo apt-get nvidia-331-updates
 
 install:
   # unable to use conda?

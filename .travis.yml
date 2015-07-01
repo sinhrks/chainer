@@ -17,7 +17,7 @@ before_install:
   - export CUDA_HOME=/usr/local/cuda-${CUDA}
   - export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
   - export PATH=${CUDA_HOME}/bin:${PATH}
-  - Nvcc --version
+  - nvcc --version
 
 install:
   - python setup.py install
@@ -25,5 +25,5 @@ install:
 
 script:
   - chainer-cuda-requirements
-  - nosetests -a '!gpu'
+  - nosetests
   - flake8 chainer/**/*.py tests/**/*.py examples/**/*.py --exclude=libcudnn.py

@@ -27,17 +27,21 @@ before_install:
   - conda update --yes conda
 
 install:
-  - python setup.py install
+  # create virtual env
+  - conda create -p $HOME/py --yes $deps "python=$TRAVIS_PYTHON_VERSION"
+  - export PATH=$HOME/py/bin:$PATH
   - conda install --yes python=$TRAVIS_PYTHON_VERSION numpy nose
   - pip install flake8 hacking
+  # pycuda installation
   - travis_retry wget --no-check-certificate https://pypi.python.org/packages/source/p/pycuda/pycuda-2014.1.tar.gz
   - tar xvfz pycuda-2014.1.tar.gz
   - cd pycuda-2014.1
-  - sudo python configure.py --cuda-root=${CUDA_HOME}
+  - python configure.py --cuda-root=${CUDA_HOME}
   - make -j 4
-  - sudo env PATH=$PATH python setup.py install
+  - python setup.py install
   - cd ~
   - pip install scikits.cuda Mako six
+  - python setup.py install
 
 script:
   - nosetests

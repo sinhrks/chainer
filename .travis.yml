@@ -25,6 +25,8 @@ install:
   - git clone --recursive http://git.tiker.net/trees/pycuda.git
   - cd pycuda
   - sudo python configure.py --cuda-root=${CUDA_HOME}
+  - make -j 4
+  - sudo env PATH=$PATH python setup.py install
   - pip install scikits.cuda Mako six
 
 script:

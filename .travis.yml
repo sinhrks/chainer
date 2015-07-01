@@ -22,7 +22,10 @@ before_install:
 install:
   - python setup.py install
   - pip install nose flake8 hacking
-  - pip install pycuda scikits.cuda Mako six
+  - git clone --recursive http://git.tiker.net/trees/pycuda.git
+  - cd pycuda
+  - sudo python configure.py --cuda-root=${CUDA_HOME}
+  - pip install scikits.cuda Mako six
 
 script:
   - nosetests

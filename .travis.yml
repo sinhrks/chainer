@@ -19,20 +19,10 @@ before_install:
   - export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
   - export PATH=${CUDA_HOME}/bin:${PATH}
   - nvcc --version
-  # use conda for quicker numpy installation
-  # - travis_retry wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
-  # - chmod +x miniconda.sh
-  # - ./miniconda.sh -b
-  # - export PATH=/home/travis/miniconda/bin:$PATH
-  # - conda update --yes conda
 
 install:
   # unable to use conda?
   - travis_retry sudo apt-get install python-numpy
-  # create virtual env
-  # - conda create -p $HOME/py --yes $deps "python=$TRAVIS_PYTHON_VERSION"
-  # - export PATH=$HOME/py/bin:$PATH
-  # - conda install --yes python=$TRAVIS_PYTHON_VERSION numpy nose
   - pip install flake8 hacking
   # pycuda installation
   - travis_retry wget --no-check-certificate https://pypi.python.org/packages/source/p/pycuda/pycuda-2014.1.tar.gz
@@ -41,7 +31,7 @@ install:
   - python configure.py --cuda-root=${CUDA_HOME}
   - make -j 4
   - python setup.py install
-  - cd ~
+  - cd ../
   - pip install scikits.cuda Mako six
   - python setup.py install
 

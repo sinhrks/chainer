@@ -22,8 +22,8 @@ before_install:
 install:
   - python setup.py install
   - pip install nose flake8 hacking
+  - pip install chainer-cuda-requirements
 
 script:
-  - chainer-cuda-requirements
   - nosetests
   - flake8 chainer/**/*.py tests/**/*.py examples/**/*.py --exclude=libcudnn.py

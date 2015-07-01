@@ -20,11 +20,11 @@ before_install:
   - export PATH=${CUDA_HOME}/bin:${PATH}
   - nvcc --version
   # use conda for quicker numpy installation
-  - travis_retry wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
-  - chmod +x miniconda.sh
-  - ./miniconda.sh -b
-  - export PATH=/home/travis/miniconda/bin:$PATH
-  - conda update --yes conda
+  # - travis_retry wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
+  # - chmod +x miniconda.sh
+  # - ./miniconda.sh -b
+  # - export PATH=/home/travis/miniconda/bin:$PATH
+  # - conda update --yes conda
 
 install:
   # unable to use conda?

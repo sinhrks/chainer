@@ -25,9 +25,9 @@ conda info -a
 conda create -n myenv python=${PYTHON_VER}
 
 source activate myenv
-conda install numpy cython h5py
+conda install numpy cython h5py nose mock
 python --version
 python setup.py install
-pip install nose flake8 hacking
+pip install flake8 hacking
 nosetests -a '!gpu' tests/chainer_tests || exit -1
 flake8 || exit -1

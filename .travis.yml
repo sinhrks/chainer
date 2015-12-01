@@ -1,21 +1,22 @@
+sudo: true
 language: python
 
-python:
-  - "2.7"
-  - "3.4"
-  - "3.5"
-
-install:
-  - python setup.py install
-  - pip install nose flake8 hacking
+matrix:
+  include:
+    - os: linux
+      env: 
+      - PYTHON_VER="2.7"
+    - os: linux
+      env:
+      - PYTHON_VER="3.4"
+    - os: linux
+      env:
+      - PYTHON_VER="3.5"
+    - os: osx
+      language: generic
+      env:
+      - PYTHON_VER="3.5"
 
 script:
-  - nosetests -a '!gpu' tests/chainer_tests
-  - flake8
+  - ci/setup.sh
 
-sudo: false
-
-addons:
-  apt:
-    packages:
-      - libhdf5-serial-dev
